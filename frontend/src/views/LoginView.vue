@@ -22,7 +22,7 @@
   </template>
   
   <script>
-  import Cookie from 'js-cookie';
+  import Cookies from 'js-cookie';
 
   export default {
     name: 'LoginView',
@@ -35,7 +35,7 @@
     },
 
     created(){
-        Cookie.remove('_todolist_token');
+        Cookies.remove('todolist_token');
     },
 
     methods: {
@@ -55,8 +55,7 @@
             })
             .then(response => response.json())
             .then(res => {
-                Cookie.set('_todolist_token', res.acess_token);
-                console.log(res.access_token);
+                Cookies.set('todolist_token',res.access_token);
             })
         },
     },
