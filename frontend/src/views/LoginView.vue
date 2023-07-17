@@ -22,6 +22,8 @@
   </template>
   
   <script>
+  import Cookie from 'js-cookie';
+
   export default {
     name: 'LoginView',
 
@@ -30,6 +32,10 @@
             email: '',
             password: '',
         };
+    },
+
+    created(){
+        Cookie.remove('_todolist_token');
     },
 
     methods: {
@@ -46,9 +52,11 @@
                     'Access' : 'application/json',
                  },
                 body: JSON.stringify(payload)
-            }).then(response => response.json())
+            })
+            .then(response => response.json())
             .then(res => {
-                console.log(res);
+                Cookie.set('_todolist_token', res.acess_token);
+                console.log(res.access_token);
             })
         },
     },
